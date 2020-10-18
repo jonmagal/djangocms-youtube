@@ -18,10 +18,27 @@ try:
             'django.contrib.auth',
             'django.contrib.contenttypes',
             'django.contrib.sites',
+            'cms',
+            'menus',
             'djangocms_youtube',
+            'easy_thumbnails',
+            'treebeard',
+            'filer',
         ],
         SITE_ID=1,
         NOSE_ARGS=['-s'],
+        TEMPLATES=[
+            {
+                'BACKEND': 'django.template.backends.django.DjangoTemplates',
+                'OPTIONS': {
+                    'context_processors': [
+                        'django.template.context_processors.request',
+                        'cms.context_processors.cms_settings',
+                    ],
+
+                },
+            },
+        ]
     )
 
     try:
