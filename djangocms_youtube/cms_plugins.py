@@ -36,6 +36,8 @@ class YoutubePlugin(CMSPluginBase):
     allow_children = settings.DJANGOCMS_YOUTUBE_ALLOW_CHILDREN
     child_classes = settings.DJANGOCMS_YOUTUBE_CHILD_CLASSES
 
+    change_form_template = 'djangocms_youtube/change.html'
+
     def get_fieldsets(self, request, obj=None):
         if settings.DJANGOCMS_YOUTUBE_FIELDSETS:
             return settings.DJANGOCMS_YOUTUBE_FIELDSETS
@@ -119,12 +121,12 @@ class YoutubePlugin(CMSPluginBase):
         else:
             return JsonResponse(response)
 
-    class Media:
-        css = {
-            'all': (
-                'admin/css/djangocms_youtube/changeform.css',
-            )
-        }
-        js = ('admin/js/djangocms_youtube/changeform.js', )
+    # class Media:
+    #     css = {
+    #         'all': (
+    #             'admin/css/djangocms_youtube/changeform.css',
+    #         )
+    #     }
+    #     js = ('admin/js/djangocms_youtube/changeform.js', )
 
 plugin_pool.register_plugin(YoutubePlugin)
