@@ -5,8 +5,7 @@ import logging
 
 from django.contrib.sites.models import Site
 from django.db import models
-from django.utils import six
-from django.utils.encoding import python_2_unicode_compatible
+import six
 from django.utils.translation import ugettext_lazy as _
 
 from cms.models import CMSPlugin
@@ -19,7 +18,6 @@ from .conf import settings
 logger = logging.getLogger('djangocms_youtube')
 
 
-@python_2_unicode_compatible
 class Youtube(CMSPlugin):
     title = models.CharField(_('Title'), max_length=150, blank=True)
     thumbnail = FilerImageField(
@@ -175,7 +173,6 @@ class Youtube(CMSPlugin):
         )
 
 
-@python_2_unicode_compatible
 class Video(object):
 
     def __init__(self, *args, **kwargs):
