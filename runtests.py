@@ -7,6 +7,7 @@ try:
         DEBUG=True,
         LANGUAGE_CODE='en-us',
         USE_TZ=True,
+        CMS_CONFIRM_VERSION4=True,
         DATABASES={
             'default': {
                 'ENGINE': 'django.db.backends.sqlite3',
@@ -18,6 +19,7 @@ try:
             'django.contrib.auth',
             'django.contrib.contenttypes',
             'django.contrib.sites',
+            'django.contrib.admin',
             'cms',
             'menus',
             'djangocms_youtube',
@@ -30,6 +32,7 @@ try:
         TEMPLATES=[
             {
                 'BACKEND': 'django.template.backends.django.DjangoTemplates',
+                'APP_DIRS': True,
                 'OPTIONS': {
                     'context_processors': [
                         'django.template.context_processors.request',

@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from django.utils.encoding import force_text
-from django.utils.translation import ugettext_lazy as _
+from django.utils.encoding import force_str
+from django.utils.translation import gettext_lazy as _
 
 from requests.api import request
 from requests.exceptions import RequestException
@@ -16,7 +16,7 @@ def fetch_gdata(resource, parts, identifier):
 
     if access_token is None:
         msg = _('Missing DJANGOCMS_YOUTUBE_API_KEY settings')
-        raise YoutubeAPIError(500, 'ImproperlyConfigured', force_text(msg))
+        raise YoutubeAPIError(500, 'ImproperlyConfigured', force_str(msg))
 
     url_template = '{resource}?part={parts}&fields=items&maxResults=1&id={id}&key={access_token}'
     url = url_template.format(
@@ -46,7 +46,7 @@ def get_video_details(video_id):
         result = fetch_gdata('videos', parts, video_id)
     except YoutubeAPI404:
         msg = _('This video does not exist.')
-        raise YoutubeAPIError(404, 'videoNotFound', force_text(msg))
+        raise YoutubeAPIError(404, 'videoNotFound', force_str(msg))
     else:
         category_name = get_category_name(result.get('snippet', {}).get('categoryId', ''))
         result['snippet']['categoryName'] = category_name
@@ -59,6 +59,6 @@ def get_category_name(cat_id):
         result = fetch_gdata('videoCategories', parts, cat_id)
     except YoutubeAPI404:
         msg = _('This video category does not exist.')
-        raise YoutubeAPIError(404, 'videoCategoryNotFound', force_text(msg))
+        raise YoutubeAPIError(404, 'videoCategoryNotFound', force_str(msg))
     else:
         return result.get('snippet', {}).get('title', '')

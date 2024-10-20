@@ -42,6 +42,7 @@ setup(
         'isodate>=0.5.4',
         'jsonfield',
         'requests',
+        'six',
     ],
     license="BSD",
     zip_safe=False,
