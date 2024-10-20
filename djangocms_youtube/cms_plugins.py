@@ -87,11 +87,11 @@ class YoutubePlugin(CMSPluginBase):
             return app_label, self.model._meta.module_name
 
     def get_plugin_urls(self):
-        from django.conf.urls import url
+        from django.urls import re_path
         info = self.get_model_info()
 
         return [
-            url(r'^gdata/$',
+            re_path(r'^gdata/$',
                 admin.site.admin_view(self.youtube_data_api),
                 name='%s_%s_gdata' % info),
         ]
